@@ -68,6 +68,11 @@ class AgencyClickEL {
 		while ( mainDivElement.firstChild ) {
 			mainDivElement.removeChild ( mainDivElement.firstChild );
 		}
+		mainDivElement = document.getElementById ( 'gtfs-trip' );
+		while ( mainDivElement.firstChild ) {
+			mainDivElement.removeChild ( mainDivElement.firstChild );
+		}
+		mainDivElement = document.getElementById ( 'gtfs-route' );
 		result.forEach (
 			route => {
 				let divElement = document.createElement ( 'div' );
@@ -92,7 +97,7 @@ class AgencyClickEL {
 			}
 		);
 		document.getElementById ( 'gtfsweb-button-agency' + this.#agencyId ).classList.add ( 'gtfsweb-selected' );
-		fetch ( 'route.php?network=' + this.#network + '&agency=' + this.#agencyId )
+		fetch ( 'SelectRoute.php?network=' + this.#network + '&agency=' + this.#agencyId )
 			.then (
 				response => {
 					// eslint-disable-next-line no-magic-numbers

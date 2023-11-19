@@ -92,7 +92,7 @@ class RouteClickEL {
 			}
 		);
 		document.getElementById ( 'gtfsweb-button-route' + this.#routeId ).classList.add ( 'gtfsweb-selected' );
-		fetch ( 'trip.php?network=' + this.#network + '&route=' + this.#routeId )
+		fetch ( 'SelectShapes.php?network=' + this.#network + '&route=' + this.#routeId )
 			.then (
 				response => {
 					// eslint-disable-next-line no-magic-numbers

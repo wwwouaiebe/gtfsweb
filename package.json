@@ -28,6 +28,7 @@
         "grunt-essimpledoc": "latest",
         "grunt-wwwouaiebe-buildnumber": "latest",
         "grunt-wwwouaiebe-stylelint": "latest",
-        "stylelint": "latest"
+        "stylelint": "latest",
+        "stylelint-config-standard": "^34.0.0"
     }
 }

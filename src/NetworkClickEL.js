@@ -55,14 +55,19 @@ class NetworkClickEL {
 	 */
 
 	#parseResponse ( result ) {
-		let mainDivElement = document.getElementById ( 'gtfs-route' );
+		let mainDivElement = document.getElementById ( 'gtfs-agency' );
+		while ( mainDivElement.firstChild ) {
+			mainDivElement.removeChild ( mainDivElement.firstChild );
+		}
+		mainDivElement = document.getElementById ( 'gtfs-route' );
+		while ( mainDivElement.firstChild ) {
+			mainDivElement.removeChild ( mainDivElement.firstChild );
+		}
+		mainDivElement = document.getElementById ( 'gtfs-trip' );
 		while ( mainDivElement.firstChild ) {
 			mainDivElement.removeChild ( mainDivElement.firstChild );
 		}
 		mainDivElement = document.getElementById ( 'gtfs-agency' );
-		while ( mainDivElement.firstChild ) {
-			mainDivElement.removeChild ( mainDivElement.firstChild );
-		}
 		result.forEach (
 			agency => {
 				let divElement = document.createElement ( 'div' );
@@ -87,7 +92,7 @@ class NetworkClickEL {
 			}
 		);
 		document.getElementById ( 'gtfsweb-button' + this.#network ).classList.add ( 'gtfsweb-selected' );
-		fetch ( 'agency.php?network=' + this.#network )
+		fetch ( 'SelectAgency.php?network=' + this.#network )
 			.then (
 				response => {
 					// eslint-disable-next-line no-magic-numbers

@@ -1,6 +1,11 @@
 <?php
+$idtec = null;
+$idstib = null;
+$pswtec = null;
+$pswstib = null;
 $network = $_GET["network"];
 $route = $_GET["route"];
+
 include 'd536289c-54e7-46fa-9020-625a3cd5239c/d536289c-54e7-46fa-9020-625a3cd5239c.php';
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 

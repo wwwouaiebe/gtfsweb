@@ -78,7 +78,7 @@ class ShapeClickEL {
 			}
 		);
 		document.getElementById ( 'gtfsweb-button-shape' + this.#shapeId ).classList.add ( 'gtfsweb-selected' );
-		fetch ( 'shape.php?network=' + this.#network + '&shapeId=' + this.#shapeId )
+		fetch ( 'SelectGpxPoints.php?network=' + this.#network + '&shapeId=' + this.#shapeId )
 			.then (
 				response => {
 					// eslint-disable-next-line no-magic-numbers

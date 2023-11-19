@@ -22,6 +22,13 @@ module.exports = function ( grunt ) {
 	grunt.initConfig ( {
 		pkg : grunt.file.readJSON ( 'package.json' ),
 
+		stylelint : {
+			options : {
+				fix : true
+			},
+			src : [ 'src/**/*.css' ]
+		},
+
 		// eslint config
 
 		eslint : {
@@ -68,6 +75,7 @@ module.exports = function ( grunt ) {
 	} );
 
 	grunt.loadNpmTasks ( 'grunt-eslint' );
+	grunt.loadNpmTasks ( 'grunt-wwwouaiebe-stylelint' );
 	grunt.loadNpmTasks ( 'grunt-wwwouaiebe-buildnumber' );
 	grunt.loadNpmTasks ( 'grunt-essimpledoc' );
 
@@ -106,6 +114,7 @@ module.exports = function ( grunt ) {
 			'hello',
 			'buildnumber:start',
 			'eslint',
+			'stylelint',
 			'essimpledoc',
 			'buildnumber:end',
 			'bye'
