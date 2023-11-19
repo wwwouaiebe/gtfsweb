@@ -1,0 +1,21 @@
+.gtfsweb-button {
+    /* background-color: red;*/
+    border-style: solid;
+    border-width: 0.1em;
+    padding: 0.1em;
+    margin-left: 2em;
+    margin-bottom: 0.5em;
+    width: 40em;
+    text-align: center;
+}
+
+.gtfsweb-button:hover {
+    cursor: pointer;
+    background-color: lightgreen;
+}
+
+.gtfsweb-selected,
+.gtfsweb-selected:hover {
+    background-color: green;
+    color:white;
+}
