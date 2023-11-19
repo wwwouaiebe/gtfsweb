@@ -1,0 +1,33 @@
+{
+    "name": "gtfsweb",
+    "version": "1.0.0",
+    "description": "Coming soon",
+    "main": "src/gtfsweb.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/wwwouaiebe/gtfsweb.git"
+    },
+    "scripts": {
+        "debug": "node node_modules/grunt/bin/grunt"
+    },
+    "keywords": [
+        "gtfs"
+    ],
+    "author": "wwwouaiebe",
+    "license": "GPL-3.0",
+    "bugs": {
+        "url": "https://github.com/wwwouaiebe/gtfsweb/issues"
+    },
+    "sources": "https://github.com/wwwouaiebe/gtfsweb",
+    "homepage": "https://github.com/wwwouaiebe/gtfsweb#readme",
+    "devDependencies": {
+        "eslint": "latest",
+        "essimpledoc": "latest",
+        "grunt": "latest",
+        "grunt-eslint": "latest",
+        "grunt-essimpledoc": "latest",
+        "grunt-wwwouaiebe-buildnumber": "latest",
+        "grunt-wwwouaiebe-stylelint": "latest",
+        "stylelint": "latest"
+    }
+}
