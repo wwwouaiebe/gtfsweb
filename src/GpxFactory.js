@@ -128,19 +128,24 @@ class GpxFactory {
 	Add the waypoints to the gpx file
 	*/
 
-	/*
 	#addWayPoints ( ) {
-		const wayPointsIterator = this.#route.wayPoints.iterator;
-		while ( ! wayPointsIterator.done ) {
-			this.#gpxString +=
-				GpxFactory.#TAB1 + '<wpt lat="' + wayPointsIterator.value.lat + '" lon="' + wayPointsIterator.value.lng + '">' +
-				GpxFactory.#TAB2 + this.#timeStamp +
-				GpxFactory.#TAB2 + '<name>' + this.#replaceEntities ( wayPointsIterator.value.fullName ) + '</name>' +
-				GpxFactory.#TAB1 + '</wpt>';
-
-		}
+		this.#gpxString +=
+			GpxFactory.#TAB1 + '<wpt lat="' +
+			this.#result[ 0 ].shape_pt_lat +
+			'" lon="' +
+			this.#result[ 0 ].shape_pt_lon + '">' +
+			GpxFactory.#TAB2 + this.#timeStamp +
+			GpxFactory.#TAB2 + '<name>' + this.#replaceEntities ( 'start' ) + '</name>' +
+			GpxFactory.#TAB1 + '</wpt>';
+		this.#gpxString +=
+			GpxFactory.#TAB1 + '<wpt lat="' +
+			this.#result[ this.#result.length - 1 ].shape_pt_lat +
+			'" lon="' +
+			this.#result[ this.#result.length - 1 ].shape_pt_lon + '">' +
+			GpxFactory.#TAB2 + this.#timeStamp +
+			GpxFactory.#TAB2 + '<name>' + this.#replaceEntities ( 'end' ) + '</name>' +
+			GpxFactory.#TAB1 + '</wpt>';
 	}
-    */
 
 	/**
 	Add the route to the gpx file
@@ -172,7 +177,9 @@ class GpxFactory {
 	#addTrack ( ) {
 		this.#gpxString += GpxFactory.#TAB1 + '<trk>';
 
-		// this.#gpxString += GpxFactory.#TAB2 + '<name>' + this.#replaceEntities ( this.#route.computedName ) + '</name>';
+		this.#gpxString += GpxFactory.#TAB2 + '<name>' +
+			this.#replaceEntities ( theUserData.routeFullName + ' - ' + this.#shapeId ) +
+			'</name>';
 		this.#gpxString += GpxFactory.#TAB2 + '<trkseg>';
 
 		this.#result.forEach (
@@ -242,7 +249,7 @@ class GpxFactory {
 		this.#timeStamp = '<time>' + new Date ( ).toISOString ( ) + '</time>';
 		this.#addHeader ( );
 
-		// this.#addWayPoints ( );
+		this.#addWayPoints ( );
 		// this.#addRoute ( );
 		this.#addTrack ( );
 		this.#addFooter ( );
