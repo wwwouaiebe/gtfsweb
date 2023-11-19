@@ -22,7 +22,8 @@ Changes:
 */
 /* ------------------------------------------------------------------------------------------------------------------------- */
 
-import ShapeClickEL from './ShapeClickEL';
+import ShapeClickEL from './ShapeClickEL.js';
+import theUserData from './UserData.js';
 
 /* ------------------------------------------------------------------------------------------------------------------------- */
 /**
@@ -37,23 +38,14 @@ class RouteClickEL {
 	 * @type {String}
 	 */
 
-	#network;
-
-	/**
-	 * Coming soon...
-	 * @type {String}
-	 */
-
 	#routeId;
 
 	/**
 	 * The constructor
-	 * @param {String} network Coming soon
 	 * @param {String} routeId Coming soon
 	 */
 
-	constructor ( network, routeId ) {
-		this.#network = network;
+	constructor ( routeId ) {
 		this.#routeId = routeId;
 		Object.freeze ( this );
 	}
@@ -64,18 +56,16 @@ class RouteClickEL {
 	 */
 
 	#parseResponse ( result ) {
+		theUserData.routeId = this.#routeId;
 		let mainDivElement = document.getElementById ( 'gtfs-trip' );
-		while ( mainDivElement.firstChild ) {
-			mainDivElement.removeChild ( mainDivElement.firstChild );
-		}
 		result.forEach (
 			trip => {
 				let divElement = document.createElement ( 'div' );
-				divElement.innerText = trip.shape_id;
+				divElement.innerText = theUserData.routeFullName + ' - ' + trip.shape_id;
 				divElement.classList.add ( 'gtfsweb-button' );
 				divElement.classList.add ( 'gtfsweb-buttonShape' );
 				divElement.id = 'gtfsweb-button-shape' + trip.shape_id;
-				divElement.addEventListener ( 'click', new ShapeClickEL ( this.#network, trip.shape_id ) );
+				divElement.addEventListener ( 'click', new ShapeClickEL ( trip.shape_id ) );
 				mainDivElement.appendChild ( divElement );
 			}
 		);
@@ -83,16 +73,18 @@ class RouteClickEL {
 
 	/**
 	 * Coming soon...
+	 * @param {Event} clickEvent the event to handle
 	 */
 
-	handleEvent ( ) {
+	handleEvent ( clickEvent ) {
 		document.querySelectorAll ( '.gtfsweb-buttonRoute' ).forEach (
 			element => {
 				element.classList.remove ( 'gtfsweb-selected' );
 			}
 		);
-		document.getElementById ( 'gtfsweb-button-route' + this.#routeId ).classList.add ( 'gtfsweb-selected' );
-		fetch ( 'SelectShapes.php?network=' + this.#network + '&route=' + this.#routeId )
+		theUserData.routeFullName = clickEvent.target.innerText;
+		clickEvent.target.classList.add ( 'gtfsweb-selected' );
+		fetch ( 'SelectShapes.php?network=' + theUserData.network + '&route=' + this.#routeId )
 			.then (
 				response => {
 					// eslint-disable-next-line no-magic-numbers

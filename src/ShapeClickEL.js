@@ -23,6 +23,7 @@ Changes:
 /* ------------------------------------------------------------------------------------------------------------------------- */
 
 import GpxFactory from './GpxFactory.js';
+import theUserData from './UserData.js';
 
 /* ------------------------------------------------------------------------------------------------------------------------- */
 /**
@@ -37,23 +38,14 @@ class ShapeClickEL {
 	 * @type {String}
 	 */
 
-	#network;
-
-	/**
-	 * Coming soon...
-	 * @type {String}
-	 */
-
 	#shapeId;
 
 	/**
 	 * The constructor
-	 * @param {String} network Coming soon
 	 * @param {String} shapeId Coming soon
 	 */
 
-	constructor ( network, shapeId ) {
-		this.#network = network;
+	constructor ( shapeId ) {
 		this.#shapeId = shapeId;
 		Object.freeze ( this );
 	}
@@ -78,7 +70,7 @@ class ShapeClickEL {
 			}
 		);
 		document.getElementById ( 'gtfsweb-button-shape' + this.#shapeId ).classList.add ( 'gtfsweb-selected' );
-		fetch ( 'SelectGpxPoints.php?network=' + this.#network + '&shapeId=' + this.#shapeId )
+		fetch ( 'SelectGpxPoints.php?network=' + theUserData.network + '&shapeId=' + this.#shapeId )
 			.then (
 				response => {
 					// eslint-disable-next-line no-magic-numbers

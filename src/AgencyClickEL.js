@@ -22,7 +22,8 @@ Changes:
 */
 /* ------------------------------------------------------------------------------------------------------------------------- */
 
-import RouteClickEL from './RouteClickEL';
+import RouteClickEL from './RouteClickEL.js';
+import theUserData from './UserData.js';
 
 /* ------------------------------------------------------------------------------------------------------------------------- */
 /**
@@ -37,23 +38,14 @@ class AgencyClickEL {
 	 * @type {String}
 	 */
 
-	#network;
-
-	/**
-	 * Coming soon...
-	 * @type {String}
-	 */
-
 	#agencyId;
 
 	/**
 	 * The constructor
-	 * @param {String} network Coming soon
 	 * @param {String} agencyId Coming soon
 	 */
 
-	constructor ( network, agencyId ) {
-		this.#network = network;
+	constructor ( agencyId ) {
 		this.#agencyId = agencyId;
 		Object.freeze ( this );
 	}
@@ -73,6 +65,7 @@ class AgencyClickEL {
 			mainDivElement.removeChild ( mainDivElement.firstChild );
 		}
 		mainDivElement = document.getElementById ( 'gtfs-route' );
+		theUserData.agencyId = this.#agencyId;
 		result.forEach (
 			route => {
 				let divElement = document.createElement ( 'div' );
@@ -80,7 +73,7 @@ class AgencyClickEL {
 				divElement.classList.add ( 'gtfsweb-button' );
 				divElement.classList.add ( 'gtfsweb-buttonRoute' );
 				divElement.id = 'gtfsweb-button-route' + route.route_id;
-				divElement.addEventListener ( 'click', new RouteClickEL ( this.#network, route.route_id ) );
+				divElement.addEventListener ( 'click', new RouteClickEL ( route.route_id ) );
 				mainDivElement.appendChild ( divElement );
 			}
 		);
@@ -88,16 +81,16 @@ class AgencyClickEL {
 
 	/**
 	 * Coming soon...
-	 */
+	 * @param {Event} clickEvent the event to handle	 */
 
-	handleEvent ( ) {
+	handleEvent ( clickEvent ) {
 		document.querySelectorAll ( '.gtfsweb-buttonAgency' ).forEach (
 			element => {
 				element.classList.remove ( 'gtfsweb-selected' );
 			}
 		);
-		document.getElementById ( 'gtfsweb-button-agency' + this.#agencyId ).classList.add ( 'gtfsweb-selected' );
-		fetch ( 'SelectRoute.php?network=' + this.#network + '&agency=' + this.#agencyId )
+		clickEvent.target.classList.add ( 'gtfsweb-selected' );
+		fetch ( 'SelectRoute.php?network=' + theUserData.network + '&agencyId=' + this.#agencyId )
 			.then (
 				response => {
 					// eslint-disable-next-line no-magic-numbers

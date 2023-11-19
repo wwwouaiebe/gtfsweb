@@ -23,6 +23,7 @@ Changes:
 /* ------------------------------------------------------------------------------------------------------------------------- */
 
 import AgencyClickEL from './AgencyClickEL.js';
+import theUserData from './UserData.js';
 
 /* ------------------------------------------------------------------------------------------------------------------------- */
 /**
@@ -56,18 +57,6 @@ class NetworkClickEL {
 
 	#parseResponse ( result ) {
 		let mainDivElement = document.getElementById ( 'gtfs-agency' );
-		while ( mainDivElement.firstChild ) {
-			mainDivElement.removeChild ( mainDivElement.firstChild );
-		}
-		mainDivElement = document.getElementById ( 'gtfs-route' );
-		while ( mainDivElement.firstChild ) {
-			mainDivElement.removeChild ( mainDivElement.firstChild );
-		}
-		mainDivElement = document.getElementById ( 'gtfs-trip' );
-		while ( mainDivElement.firstChild ) {
-			mainDivElement.removeChild ( mainDivElement.firstChild );
-		}
-		mainDivElement = document.getElementById ( 'gtfs-agency' );
 		result.forEach (
 			agency => {
 				let divElement = document.createElement ( 'div' );
@@ -75,7 +64,7 @@ class NetworkClickEL {
 				divElement.classList.add ( 'gtfsweb-button' );
 				divElement.classList.add ( 'gtfsweb-buttonAgency' );
 				divElement.id = 'gtfsweb-button-agency' + agency.agency_id;
-				divElement.addEventListener ( 'click', new AgencyClickEL ( this.#network, agency.agency_id ) );
+				divElement.addEventListener ( 'click', new AgencyClickEL ( agency.agency_id ) );
 				mainDivElement.appendChild ( divElement );
 			}
 		);
@@ -83,15 +72,16 @@ class NetworkClickEL {
 
 	/**
 	 * Coming soon...
-	 */
+	 * @param {Event} clickEvent the event to handle	 */
 
-	handleEvent ( ) {
+	handleEvent ( clickEvent ) {
 		document.querySelectorAll ( '.gtfsweb-buttonNetwork' ).forEach (
 			element => {
 				element.classList.remove ( 'gtfsweb-selected' );
 			}
 		);
-		document.getElementById ( 'gtfsweb-button' + this.#network ).classList.add ( 'gtfsweb-selected' );
+		theUserData.network = this.#network;
+		clickEvent.target.classList.add ( 'gtfsweb-selected' );
 		fetch ( 'SelectAgency.php?network=' + this.#network )
 			.then (
 				response => {

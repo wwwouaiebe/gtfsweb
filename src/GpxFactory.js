@@ -22,6 +22,8 @@ Changes:
 */
 /* ------------------------------------------------------------------------------------------------------------------------- */
 
+import theUserData from './UserData.js';
+
 /* ------------------------------------------------------------------------------------------------------------------------- */
 /**
  * Coming soon...
@@ -228,7 +230,7 @@ class GpxFactory {
 	*/
 
 	#saveGpxToFile ( ) {
-		let fileName = this.#shapeId + '.gpx';
+		let fileName = theUserData.routeFullName + ' - ' + this.#shapeId + '.gpx';
 		this.#saveFile ( fileName, this.#gpxString, 'application/xml' );
 	}
 
