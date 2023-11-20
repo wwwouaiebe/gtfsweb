@@ -250,6 +250,7 @@ class GpxFactory {
 		this.#addHeader ( );
 
 		this.#addWayPoints ( );
+
 		// this.#addRoute ( );
 		this.#addTrack ( );
 		this.#addFooter ( );

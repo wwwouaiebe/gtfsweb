@@ -61,7 +61,13 @@ class RouteClickEL {
 		result.forEach (
 			trip => {
 				let divElement = document.createElement ( 'div' );
-				divElement.innerText = theUserData.routeFullName + ' - ' + trip.shape_id;
+				divElement.innerText =
+					theUserData.routeFullName + ' - from ' +
+					trip.min_start_date +
+					' to ' +
+					trip.max_end_date +
+					' - ' +
+					trip.shape_id;
 				divElement.classList.add ( 'gtfsweb-button' );
 				divElement.classList.add ( 'gtfsweb-buttonShape' );
 				divElement.id = 'gtfsweb-button-shape' + trip.shape_id;
@@ -84,7 +90,16 @@ class RouteClickEL {
 		);
 		theUserData.routeFullName = clickEvent.target.innerText;
 		clickEvent.target.classList.add ( 'gtfsweb-selected' );
-		fetch ( 'SelectShapes.php?network=' + theUserData.network + '&route=' + this.#routeId )
+		let askDate = document.getElementById ( 'gtfsweb-DateInput' ).value;
+		let startDate = '' === askDate ? '2099-12-31' : askDate;
+		let endDate = '' === askDate ? '2000-01-01' : askDate;
+		fetch (
+			'SelectShapes.php?network=' +
+			theUserData.network +
+			'&route=' + this.#routeId +
+			'&startDate=' + startDate +
+			'&endDate=' + endDate
+		)
 			.then (
 				response => {
 					// eslint-disable-next-line no-magic-numbers

@@ -26,5 +26,9 @@ import NetworkClickEL from './NetworkClickEL.js';
 
 document.getElementById ( 'gtfsweb-buttonStib' ).addEventListener ( 'click', new NetworkClickEL ( 'Stib' ) );
 document.getElementById ( 'gtfsweb-buttonTec' ).addEventListener ( 'click', new NetworkClickEL ( 'Tec' ) );
+document.getElementById ( 'gtfsweb-DateInput' ).value = new Date ( )
+	.toISOString ( )
+	// eslint-disable-next-line no-magic-numbers
+	.slice ( 0, 10 );
 
 /* --- End of file --------------------------------------------------------------------------------------------------------- */
