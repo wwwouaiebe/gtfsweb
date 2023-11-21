@@ -57,9 +57,10 @@ class NetworkClickEL {
 
 	#parseResponse ( result ) {
 		let mainDivElement = document.getElementById ( 'gtfs-agency' );
+		let divElement = null;
 		result.forEach (
 			agency => {
-				let divElement = document.createElement ( 'div' );
+				divElement = document.createElement ( 'div' );
 				divElement.innerText = agency.agency_name;
 				divElement.classList.add ( 'gtfsweb-button' );
 				divElement.classList.add ( 'gtfsweb-buttonAgency' );
@@ -68,6 +69,9 @@ class NetworkClickEL {
 				mainDivElement.appendChild ( divElement );
 			}
 		);
+		if ( 1 === result.length ) {
+			divElement.click ( );
+		}
 	}
 
 	/**
