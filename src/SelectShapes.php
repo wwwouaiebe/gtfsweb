@@ -1,9 +1,4 @@
 <?php
-$idtec = null;
-$idstib = null;
-$pswtec = null;
-$pswstib = null;
-
 $networkId = $_GET [ "networkId" ];
 $routeId = $_GET [ "routeId" ];
 $startDate = $_GET [ "startDate" ];
@@ -13,20 +8,9 @@ include 'd536289c-54e7-46fa-9020-625a3cd5239c/d536289c-54e7-46fa-9020-625a3cd523
 
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-if ( 'Delijn' == $networkId ) {
-    $mysqli = new mysqli ( 'localhost', $iddelijn, $pswdelijn , 'gtfs_delijn' );
-}
-elseif ( 'Stib' == $networkId ) {
-    $mysqli = new mysqli ( 'localhost',  $idstib, $pswstib, 'gtfs_stib' );
-}
-elseif ( 'Tec' == $networkId ) {
-    $mysqli = new mysqli( 'localhost', $idtec, $pswtec , 'gtfs_tec' );
-}
-else {
-    return;
-}
+$mysqli = new mysqli ( 'localhost', $networkId, $ids [ $networkId ] , $networkId );
 
-if ( 'Delijn' == $networkId ) {
+if ( 'gtfs_delijn' == $networkId ) {
     $result = $mysqli->query ( 
         "select distinct '' as minStartDate, '' as maxEndDate, trips.shape_id as shapeId from trips where trips.route_id = '" 
         . 

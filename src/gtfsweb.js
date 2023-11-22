@@ -23,13 +23,16 @@ Changes:
 /* ------------------------------------------------------------------------------------------------------------------------- */
 
 import NetworkClickEL from './NetworkClickEL.js';
+import SearchInputEL from './SearchInputEL.js';
 
-document.getElementById ( 'gtfsweb-buttonStib' ).addEventListener ( 'click', new NetworkClickEL ( 'Stib' ) );
-document.getElementById ( 'gtfsweb-buttonTec' ).addEventListener ( 'click', new NetworkClickEL ( 'Tec' ) );
-document.getElementById ( 'gtfsweb-buttonDelijn' ).addEventListener ( 'click', new NetworkClickEL ( 'Delijn' ) );
+document.getElementById ( 'gtfsweb-buttonStib' ).addEventListener ( 'click', new NetworkClickEL ( 'gtfs_stib' ) );
+document.getElementById ( 'gtfsweb-buttonTec' ).addEventListener ( 'click', new NetworkClickEL ( 'gtfs_tec' ) );
+document.getElementById ( 'gtfsweb-buttonDelijn' ).addEventListener ( 'click', new NetworkClickEL ( 'gtfs_delijn' ) );
 document.getElementById ( 'gtfsweb-DateInput' ).value = new Date ( )
 	.toISOString ( )
 	// eslint-disable-next-line no-magic-numbers
 	.slice ( 0, 10 );
+
+document.getElementById ( 'gtfsweb-search-input' ).addEventListener ( 'input', new SearchInputEL ( ) );
 
 /* --- End of file --------------------------------------------------------------------------------------------------------- */

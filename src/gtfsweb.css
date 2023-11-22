@@ -28,3 +28,18 @@
     background-color: green;
     color:white;
 }
+
+.gtsfweb-hidden {
+	display: none !important;
+	width: 0;
+	height: 0;
+	margin: 0 !important;
+	padding: 0 !important;
+	top: 0;
+	left: 0;
+	border-width: 0 !important;
+	border-style: none !important;
+	animation: none;
+	visibility: hidden;
+	transform: scale(0);
+}

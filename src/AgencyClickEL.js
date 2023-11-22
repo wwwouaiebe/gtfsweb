@@ -77,11 +77,14 @@ class AgencyClickEL {
 				mainDivElement.appendChild ( divElement );
 			}
 		);
+		document.getElementById ( 'gtfsweb-routeTeller' ).innerText = result.length;
+		document.getElementById ( 'gtfsweb-search-input' ).value = '';
 	}
 
 	/**
 	 * Coming soon...
-	 * @param {Event} clickEvent the event to handle	 */
+	 * @param {Event} clickEvent the event to handle
+	 */
 
 	handleEvent ( clickEvent ) {
 		document.querySelectorAll ( '.gtfsweb-buttonAgency' ).forEach (
