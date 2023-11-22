@@ -38,15 +38,15 @@ class NetworkClickEL {
 	 * @type {String}
 	 */
 
-	#network;
+	#networkId;
 
 	/**
 	 * The constructor
-	 * @param {String} network Coming soon
+	 * @param {String} networkId Coming soon
 	 */
 
-	constructor ( network ) {
-		this.#network = network;
+	constructor ( networkId ) {
+		this.#networkId = networkId;
 		Object.freeze ( this );
 	}
 
@@ -56,16 +56,16 @@ class NetworkClickEL {
 	 */
 
 	#parseResponse ( result ) {
-		let mainDivElement = document.getElementById ( 'gtfs-agency' );
+		let mainDivElement = document.getElementById ( 'gtfsweb-agencies' );
 		let divElement = null;
 		result.forEach (
 			agency => {
 				divElement = document.createElement ( 'div' );
-				divElement.innerText = agency.agency_name;
+				divElement.innerText = agency.agencyName;
 				divElement.classList.add ( 'gtfsweb-button' );
 				divElement.classList.add ( 'gtfsweb-buttonAgency' );
-				divElement.id = 'gtfsweb-button-agency' + agency.agency_id;
-				divElement.addEventListener ( 'click', new AgencyClickEL ( agency.agency_id ) );
+				divElement.id = 'gtfsweb-button-agency' + agency.agencyId;
+				divElement.addEventListener ( 'click', new AgencyClickEL ( agency.agencyId ) );
 				mainDivElement.appendChild ( divElement );
 			}
 		);
@@ -84,9 +84,9 @@ class NetworkClickEL {
 				element.classList.remove ( 'gtfsweb-selected' );
 			}
 		);
-		theUserData.network = this.#network;
+		theUserData.networkId = this.#networkId;
 		clickEvent.target.classList.add ( 'gtfsweb-selected' );
-		fetch ( 'SelectAgency.php?network=' + this.#network )
+		fetch ( 'SelectAgencies.php?networkId=' + this.#networkId )
 			.then (
 				response => {
 					// eslint-disable-next-line no-magic-numbers

@@ -57,21 +57,21 @@ class RouteClickEL {
 
 	#parseResponse ( result ) {
 		theUserData.routeId = this.#routeId;
-		let mainDivElement = document.getElementById ( 'gtfs-trip' );
+		let mainDivElement = document.getElementById ( 'gtfsweb-trip' );
 		result.forEach (
 			trip => {
 				let divElement = document.createElement ( 'div' );
 				divElement.innerText =
 					theUserData.routeFullName + ' - from ' +
-					trip.min_start_date +
+					trip.minStartDate +
 					' to ' +
-					trip.max_end_date +
+					trip.maxEndDate +
 					' - ' +
-					trip.shape_id;
+					trip.shapeId;
 				divElement.classList.add ( 'gtfsweb-button' );
 				divElement.classList.add ( 'gtfsweb-buttonShape' );
-				divElement.id = 'gtfsweb-button-shape' + trip.shape_id;
-				divElement.addEventListener ( 'click', new ShapeClickEL ( trip.shape_id ) );
+				divElement.id = 'gtfsweb-button-shape' + trip.shapeId;
+				divElement.addEventListener ( 'click', new ShapeClickEL ( trip.shapeId ) );
 				mainDivElement.appendChild ( divElement );
 			}
 		);
@@ -94,9 +94,9 @@ class RouteClickEL {
 		let startDate = '' === askDate ? '2099-12-31' : askDate;
 		let endDate = '' === askDate ? '2000-01-01' : askDate;
 		fetch (
-			'SelectShapes.php?network=' +
-			theUserData.network +
-			'&route=' + this.#routeId +
+			'SelectShapes.php?networkId=' +
+			theUserData.networkId +
+			'&routeId=' + this.#routeId +
 			'&startDate=' + startDate +
 			'&endDate=' + endDate
 		)

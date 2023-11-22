@@ -70,7 +70,7 @@ class ShapeClickEL {
 			}
 		);
 		document.getElementById ( 'gtfsweb-button-shape' + this.#shapeId ).classList.add ( 'gtfsweb-selected' );
-		fetch ( 'SelectGpxPoints.php?network=' + theUserData.network + '&shapeId=' + this.#shapeId )
+		fetch ( 'SelectGpxPoints.php?networkId=' + theUserData.networkId + '&shapeId=' + this.#shapeId )
 			.then (
 				response => {
 					// eslint-disable-next-line no-magic-numbers

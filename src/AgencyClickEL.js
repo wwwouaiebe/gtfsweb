@@ -56,24 +56,24 @@ class AgencyClickEL {
 	 */
 
 	#parseResponse ( result ) {
-		let mainDivElement = document.getElementById ( 'gtfs-route' );
+		let mainDivElement = document.getElementById ( 'gtfsweb-routes' );
 		while ( mainDivElement.firstChild ) {
 			mainDivElement.removeChild ( mainDivElement.firstChild );
 		}
-		mainDivElement = document.getElementById ( 'gtfs-trip' );
+		mainDivElement = document.getElementById ( 'gtfsweb-trip' );
 		while ( mainDivElement.firstChild ) {
 			mainDivElement.removeChild ( mainDivElement.firstChild );
 		}
-		mainDivElement = document.getElementById ( 'gtfs-route' );
+		mainDivElement = document.getElementById ( 'gtfsweb-routes' );
 		theUserData.agencyId = this.#agencyId;
 		result.forEach (
 			route => {
 				let divElement = document.createElement ( 'div' );
-				divElement.innerText = route.route_short_name + ' - ' + route.route_long_name;
+				divElement.innerText = route.routeShortName + ' - ' + route.routeLongName;
 				divElement.classList.add ( 'gtfsweb-button' );
 				divElement.classList.add ( 'gtfsweb-buttonRoute' );
-				divElement.id = 'gtfsweb-button-route' + route.route_id;
-				divElement.addEventListener ( 'click', new RouteClickEL ( route.route_id ) );
+				divElement.id = 'gtfsweb-button-route' + route.routeId;
+				divElement.addEventListener ( 'click', new RouteClickEL ( route.routeId ) );
 				mainDivElement.appendChild ( divElement );
 			}
 		);
@@ -90,7 +90,7 @@ class AgencyClickEL {
 			}
 		);
 		clickEvent.target.classList.add ( 'gtfsweb-selected' );
-		fetch ( 'SelectRoute.php?network=' + theUserData.network + '&agencyId=' + this.#agencyId )
+		fetch ( 'SelectRoutes.php?networkId=' + theUserData.networkId + '&agencyId=' + this.#agencyId )
 			.then (
 				response => {
 					// eslint-disable-next-line no-magic-numbers

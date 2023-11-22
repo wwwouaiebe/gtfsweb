@@ -1,3 +1,28 @@
+<!--
+/*
+Copyright - 2023 - wwwouaiebe - Contact: https://www.ouaie.be/
+
+This  program is free software;
+you can redistribute it and/or modify it under the terms of the
+GNU General Public License as published by the Free Software Foundation;
+either version 3 of the License, or any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
+/*
+Changes:
+	- v1.0.0:
+		- created
+*/
+/* ------------------------------------------------------------------------------------------------------------------------- */
+-->
 <!DOCTYPE html>
 <html>
 	<head>
@@ -7,6 +32,7 @@
     </head>
 	<body>
         <h1>Download gpx files created from GTFS feeds</h1>
+        <!--- Date --->
         <div class = gtfsweb-help>
             <p>Select the date of validity for the gpx file.</p>
             <p>If you will have all the gpx files, clear the date.</p>
@@ -15,29 +41,37 @@
         <div>
             <input type='date' class='gtfsweb-input' id='gtfsweb-DateInput'/>
         </div>
-        <h2>GTFS Network</h2>
+       <!--- Networks --->
+       <h2>GTFS Network</h2>
         <div class = gtfsweb-help>
             <p>Select a network</p>
         </div>
-        <div id='gtfs-network'>
+        <div id='gtfsweb-networks'>
             <div id='gtfsweb-buttonDelijn' class='gtfsweb-button gtfsweb-buttonNetwork'>De Lijn</div>
             <div id='gtfsweb-buttonStib' class='gtfsweb-button gtfsweb-buttonNetwork'>STIB</div>
             <div id='gtfsweb-buttonTec' class='gtfsweb-button gtfsweb-buttonNetwork'>TEC</div>
         </div>
-        <h2>GTFS Agency</h2>
+       <!--- Agencies --->
+       <h2>GTFS Agency</h2>
         <div class = gtfsweb-help>
             <p>For TEC only. Click on the agency:</p>
         </div>
-        <div id='gtfs-agency'>
+        <div id='gtfsweb-agencies'>
         </div>
-        <h2>GTFS Route - OSM Route master</h2>
+       <!--- Routes --->
+       <h2>GTFS Route - OSM Route master</h2>
+        <div id=""gtfsweb-search-route>
+            <label for="gtfsweb-search-input">Search the routes:</label>
+            <input type="search" id="gtfsweb-search-input" name="q" />
+        </div>
         <div class = gtfsweb-help>
             <p>Select a route:</p>
         </div>
-        <div id='gtfs-route'>
+        <div id='gtfsweb-routes'>
         </div>
-        <h2>GTFS trips - OSM Route</h2>
-        <div id='gtfs-trip'>
+       <!--- Trip --->
+       <h2>GTFS trips - OSM Route</h2>
+        <div id='gtfsweb-trip'>
         </div>
 		<script type="module" src="gtfsweb.js"></script>
         <div id="gtfsweb-copyright"> 

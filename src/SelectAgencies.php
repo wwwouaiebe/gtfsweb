@@ -5,7 +5,6 @@ $pswtec = null;
 $pswstib = null;
 
 $networkId = $_GET [ 'networkId' ];
-$shapeId = $_GET [ 'shapeId' ];
 
 include 'd536289c-54e7-46fa-9020-625a3cd5239c/d536289c-54e7-46fa-9020-625a3cd5239c.php';
 
@@ -15,21 +14,17 @@ if ( 'Delijn' == $networkId ) {
     $mysqli = new mysqli ( 'localhost', $iddelijn, $pswdelijn , 'gtfs_delijn' );
 }
 elseif ( 'Stib' == $networkId ) {
-    $mysqli = new mysqli( 'localhost',  $idstib, $pswstib, 'gtfs_stib' );
+    $mysqli = new mysqli ( 'localhost',  $idstib, $pswstib, 'gtfs_stib' );
 }
 elseif ( 'Tec' == $networkId ) {
-    $mysqli = new mysqli ( 'localhost', $idtec, $pswtec , 'gtfs_tec' );
+    $mysqli = new mysqli( 'localhost', $idtec, $pswtec , 'gtfs_tec' );
 }
 else {
     return;
 }
 
 $result = $mysqli->query (
-    "SELECT shape_pt_lat, shape_pt_lon from shapes where shapes.shape_id = '"
-    . 
-    $shapeId 
-    . 
-    "' order by shape_pt_sequence;"
+    'select agency_id as agencyId, agency_name as agencyName from agency order by agency_name;'
 );
 
 $rows = $result->fetch_all ( MYSQLI_ASSOC );

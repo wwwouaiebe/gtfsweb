@@ -35,7 +35,7 @@ class UserData {
 	 * @type {string}
 	 */
 
-	#network;
+	#networkId;
 
 	/**
 	 * Coming soon...
@@ -63,7 +63,7 @@ class UserData {
 	 */
 
 	#cleanAgency ( ) {
-		let mainDivElement = document.getElementById ( 'gtfs-agency' );
+		let mainDivElement = document.getElementById ( 'gtfsweb-agencies' );
 		while ( mainDivElement.firstChild ) {
 			mainDivElement.removeChild ( mainDivElement.firstChild );
 		}
@@ -74,7 +74,7 @@ class UserData {
 	 */
 
 	#cleanRoute ( ) {
-		let mainDivElement = document.getElementById ( 'gtfs-route' );
+		let mainDivElement = document.getElementById ( 'gtfsweb-routes' );
 		while ( mainDivElement.firstChild ) {
 			mainDivElement.removeChild ( mainDivElement.firstChild );
 		}
@@ -85,7 +85,7 @@ class UserData {
 	 */
 
 	#cleanTrip ( ) {
-		let mainDivElement = document.getElementById ( 'gtfs-trip' );
+		let mainDivElement = document.getElementById ( 'gtfsweb-trip' );
 		while ( mainDivElement.firstChild ) {
 			mainDivElement.removeChild ( mainDivElement.firstChild );
 		}
@@ -96,13 +96,13 @@ class UserData {
 	 * @type {String}
 	 */
 
-	get network ( ) { return this.#network; }
+	get networkId ( ) { return this.#networkId; }
 
-	set network ( network ) {
+	set networkId ( networkId ) {
 		this.#cleanAgency ( );
 		this.#cleanRoute ( );
 		this.#cleanTrip ( );
-		this.#network = network;
+		this.#networkId = networkId;
 		this.#agencyId = '';
 		this.#routeId = '';
 		this.#routeFullName = '';
@@ -150,7 +150,7 @@ class UserData {
 
 	constructor ( ) {
 		Object.freeze ( this );
-		this.#network = '';
+		this.#networkId = '';
 		this.#agencyId = '';
 		this.#routeId = '';
 		this.#routeFullName = '';
