@@ -131,17 +131,17 @@ class GpxFactory {
 	#addWayPoints ( ) {
 		this.#gpxString +=
 			GpxFactory.#TAB1 + '<wpt lat="' +
-			this.#result[ 0 ].shape_pt_lat +
+			this.#result[ 0 ].lat +
 			'" lon="' +
-			this.#result[ 0 ].shape_pt_lon + '">' +
+			this.#result[ 0 ].lon + '">' +
 			GpxFactory.#TAB2 + this.#timeStamp +
 			GpxFactory.#TAB2 + '<name>' + this.#replaceEntities ( 'start' ) + '</name>' +
 			GpxFactory.#TAB1 + '</wpt>';
 		this.#gpxString +=
 			GpxFactory.#TAB1 + '<wpt lat="' +
-			this.#result[ this.#result.length - 1 ].shape_pt_lat +
+			this.#result[ this.#result.length - 1 ].lat +
 			'" lon="' +
-			this.#result[ this.#result.length - 1 ].shape_pt_lon + '">' +
+			this.#result[ this.#result.length - 1 ].lon + '">' +
 			GpxFactory.#TAB2 + this.#timeStamp +
 			GpxFactory.#TAB2 + '<name>' + this.#replaceEntities ( 'end' ) + '</name>' +
 			GpxFactory.#TAB1 + '</wpt>';
@@ -186,7 +186,7 @@ class GpxFactory {
 			shapePoint => {
 				this.#gpxString +=
                     GpxFactory.#TAB3 +
-                    '<trkpt lat="' + shapePoint.shape_pt_lat + '" lon="' + shapePoint.shape_pt_lon + '">' +
+                    '<trkpt lat="' + shapePoint.lat + '" lon="' + shapePoint.lon + '">' +
                     GpxFactory.#TAB4 + this.#timeStamp +
                     GpxFactory.#TAB3 + '</trkpt>';
 			}

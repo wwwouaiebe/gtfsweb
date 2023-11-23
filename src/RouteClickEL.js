@@ -38,15 +38,15 @@ class RouteClickEL {
 	 * @type {String}
 	 */
 
-	#routeId;
+	#routePk;
 
 	/**
 	 * The constructor
-	 * @param {String} routeId Coming soon
+	 * @param {String} routePk Coming soon
 	 */
 
-	constructor ( routeId ) {
-		this.#routeId = routeId;
+	constructor ( routePk ) {
+		this.#routePk = routePk;
 		Object.freeze ( this );
 	}
 
@@ -56,7 +56,7 @@ class RouteClickEL {
 	 */
 
 	#parseResponse ( result ) {
-		theUserData.routeId = this.#routeId;
+		theUserData.routePk = this.#routePk;
 		let mainDivElement = document.getElementById ( 'gtfsweb-trip' );
 		result.forEach (
 			trip => {
@@ -70,8 +70,8 @@ class RouteClickEL {
 					trip.shapeId;
 				divElement.classList.add ( 'gtfsweb-button' );
 				divElement.classList.add ( 'gtfsweb-buttonShape' );
-				divElement.id = 'gtfsweb-button-shape' + trip.shapeId;
-				divElement.addEventListener ( 'click', new ShapeClickEL ( trip.shapeId ) );
+				divElement.id = 'gtfsweb-button-shape' + trip.shapePk;
+				divElement.addEventListener ( 'click', new ShapeClickEL ( trip.shapePk ) );
 				mainDivElement.appendChild ( divElement );
 			}
 		);
@@ -96,7 +96,7 @@ class RouteClickEL {
 		fetch (
 			'SelectShapes.php?networkId=' +
 			theUserData.networkId +
-			'&routeId=' + this.#routeId +
+			'&routePk=' + this.#routePk +
 			'&startDate=' + startDate +
 			'&endDate=' + endDate
 		)

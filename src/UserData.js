@@ -42,14 +42,14 @@ class UserData {
 	 * @type {string}
 	 */
 
-	#agencyId;
+	#agencyPk;
 
 	/**
 	 * Coming soon...
 	 * @type {string}
 	 */
 
-	#routeId;
+	#routePk;
 
 	/**
 	 * Coming soon...
@@ -103,8 +103,8 @@ class UserData {
 		this.#cleanRoute ( );
 		this.#cleanTrip ( );
 		this.#networkId = networkId;
-		this.#agencyId = '';
-		this.#routeId = '';
+		this.#agencyPk = '';
+		this.#routePk = '';
 		this.#routeFullName = '';
 	}
 
@@ -113,13 +113,13 @@ class UserData {
 	 * @type {String}
 	 */
 
-	get agencyId ( ) { return this.#agencyId; }
+	get agencyPk ( ) { return this.#agencyPk; }
 
-	set agencyId ( agencyId ) {
+	set agencyPk ( agencyPk ) {
 		this.#cleanRoute ( );
 		this.#cleanTrip ( );
-		this.#agencyId = agencyId;
-		this.#routeId = '';
+		this.#agencyPk = agencyPk;
+		this.#routePk = '';
 		this.#routeFullName = '';
 	}
 
@@ -128,11 +128,11 @@ class UserData {
 	 * @type {String}
 	 */
 
-	get routeId ( ) { return this.#routeId; }
+	get routePk ( ) { return this.#routePk; }
 
-	set routeId ( routeId ) {
+	set routePk ( routePk ) {
 		this.#cleanTrip ( );
-		this.#routeId = routeId;
+		this.#routePk = routePk;
 	}
 
 	/**
@@ -151,8 +151,8 @@ class UserData {
 	constructor ( ) {
 		Object.freeze ( this );
 		this.#networkId = '';
-		this.#agencyId = '';
-		this.#routeId = '';
+		this.#agencyPk = '';
+		this.#routePk = '';
 		this.#routeFullName = '';
 	}
 }

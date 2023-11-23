@@ -1,6 +1,14 @@
 <?php
+
+error_reporting ( 0 );
+
 $networkId = $_GET [ 'networkId' ];
-$shapeId = $_GET [ 'shapeId' ];
+$shapePk = $_GET [ 'shapePk' ];
+
+if ( ! ctype_digit ( $shapePk ) ) {
+    echo '{"error":"unknown"}';
+    return;
+}
 
 include 'd536289c-54e7-46fa-9020-625a3cd5239c/d536289c-54e7-46fa-9020-625a3cd5239c.php';
 
@@ -9,11 +17,11 @@ mysqli_report ( MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT );
 $mysqli = new mysqli ( 'localhost', $networkId, $ids [ $networkId ] , $networkId );
 
 $result = $mysqli->query (
-    "SELECT shape_pt_lat, shape_pt_lon from shapes where shapes.shape_id = '"
+    "select lat, lon from lat_lon_for_shape where shapePk="
     . 
-    $shapeId 
+    $shapePk 
     . 
-    "' order by shape_pt_sequence;"
+    ";"
 );
 
 $rows = $result->fetch_all ( MYSQLI_ASSOC );

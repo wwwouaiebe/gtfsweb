@@ -38,15 +38,15 @@ class AgencyClickEL {
 	 * @type {String}
 	 */
 
-	#agencyId;
+	#agencyPk;
 
 	/**
 	 * The constructor
-	 * @param {String} agencyId Coming soon
+	 * @param {String} agencyPk Coming soon
 	 */
 
-	constructor ( agencyId ) {
-		this.#agencyId = agencyId;
+	constructor ( agencyPk ) {
+		this.#agencyPk = agencyPk;
 		Object.freeze ( this );
 	}
 
@@ -65,15 +65,15 @@ class AgencyClickEL {
 			mainDivElement.removeChild ( mainDivElement.firstChild );
 		}
 		mainDivElement = document.getElementById ( 'gtfsweb-routes' );
-		theUserData.agencyId = this.#agencyId;
+		theUserData.agencyPk = this.#agencyPk;
 		result.forEach (
 			route => {
 				let divElement = document.createElement ( 'div' );
 				divElement.innerText = route.routeShortName + ' - ' + route.routeLongName;
 				divElement.classList.add ( 'gtfsweb-button' );
 				divElement.classList.add ( 'gtfsweb-buttonRoute' );
-				divElement.id = 'gtfsweb-button-route' + route.routeId;
-				divElement.addEventListener ( 'click', new RouteClickEL ( route.routeId ) );
+				divElement.id = 'gtfsweb-button-route' + route.routePk;
+				divElement.addEventListener ( 'click', new RouteClickEL ( route.routePk ) );
 				mainDivElement.appendChild ( divElement );
 			}
 		);
@@ -93,7 +93,7 @@ class AgencyClickEL {
 			}
 		);
 		clickEvent.target.classList.add ( 'gtfsweb-selected' );
-		fetch ( 'SelectRoutes.php?networkId=' + theUserData.networkId + '&agencyId=' + this.#agencyId )
+		fetch ( 'SelectRoutes.php?networkId=' + theUserData.networkId + '&agencyPk=' + this.#agencyPk )
 			.then (
 				response => {
 					// eslint-disable-next-line no-magic-numbers

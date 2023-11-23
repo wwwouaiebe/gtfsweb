@@ -58,14 +58,17 @@ class NetworkClickEL {
 	#parseResponse ( result ) {
 		let mainDivElement = document.getElementById ( 'gtfsweb-agencies' );
 		let divElement = null;
+		if ( result.error ) {
+			return;
+		}
 		result.forEach (
 			agency => {
 				divElement = document.createElement ( 'div' );
 				divElement.innerText = agency.agencyName;
 				divElement.classList.add ( 'gtfsweb-button' );
 				divElement.classList.add ( 'gtfsweb-buttonAgency' );
-				divElement.id = 'gtfsweb-button-agency' + agency.agencyId;
-				divElement.addEventListener ( 'click', new AgencyClickEL ( agency.agencyId ) );
+				divElement.id = 'gtfsweb-button-agency' + agency.agencyPk;
+				divElement.addEventListener ( 'click', new AgencyClickEL ( agency.agencyPk ) );
 				mainDivElement.appendChild ( divElement );
 			}
 		);
@@ -92,7 +95,8 @@ class NetworkClickEL {
 					// eslint-disable-next-line no-magic-numbers
 					if ( 200 === response.status && response.ok ) {
 						response.json ( )
-							.then ( result => this.#parseResponse ( result ) );
+							.then ( result => this.#parseResponse ( result ) )
+							.catch ( );
 					}
 					else {
 						console.error ( new Error ( 'Invalid status ' + response.status ) );

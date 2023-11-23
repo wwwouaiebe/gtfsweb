@@ -38,15 +38,15 @@ class ShapeClickEL {
 	 * @type {String}
 	 */
 
-	#shapeId;
+	#shapePk;
 
 	/**
 	 * The constructor
-	 * @param {String} shapeId Coming soon
+	 * @param {String} shapePk Coming soon
 	 */
 
-	constructor ( shapeId ) {
-		this.#shapeId = shapeId;
+	constructor ( shapePk ) {
+		this.#shapePk = shapePk;
 		Object.freeze ( this );
 	}
 
@@ -56,7 +56,7 @@ class ShapeClickEL {
 	 */
 
 	#parseResponse ( result ) {
-		new GpxFactory ( this.#shapeId, result );
+		new GpxFactory ( this.#shapePk, result );
 	}
 
 	/**
@@ -69,8 +69,8 @@ class ShapeClickEL {
 				element.classList.remove ( 'gtfsweb-selected' );
 			}
 		);
-		document.getElementById ( 'gtfsweb-button-shape' + this.#shapeId ).classList.add ( 'gtfsweb-selected' );
-		fetch ( 'SelectGpxPoints.php?networkId=' + theUserData.networkId + '&shapeId=' + this.#shapeId )
+		document.getElementById ( 'gtfsweb-button-shape' + this.#shapePk ).classList.add ( 'gtfsweb-selected' );
+		fetch ( 'SelectGpxPoints.php?networkId=' + theUserData.networkId + '&shapePk=' + this.#shapePk )
 			.then (
 				response => {
 					// eslint-disable-next-line no-magic-numbers
