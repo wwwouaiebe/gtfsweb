@@ -24,6 +24,7 @@ Changes:
 
 import RouteClickEL from './RouteClickEL.js';
 import theUserData from './UserData.js';
+import theWaitAnimation from './WaitAnimation.js';
 
 /* ------------------------------------------------------------------------------------------------------------------------- */
 /**
@@ -79,6 +80,7 @@ class AgencyClickEL {
 		);
 		document.getElementById ( 'gtfsweb-routeTeller' ).innerText = result.length;
 		document.getElementById ( 'gtfsweb-search-input' ).value = '';
+		theWaitAnimation.hide ( );
 	}
 
 	/**
@@ -87,6 +89,7 @@ class AgencyClickEL {
 	 */
 
 	handleEvent ( clickEvent ) {
+		theWaitAnimation.show ( );
 		document.querySelectorAll ( '.gtfsweb-buttonAgency' ).forEach (
 			element => {
 				element.classList.remove ( 'gtfsweb-selected' );

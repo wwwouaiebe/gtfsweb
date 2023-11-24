@@ -24,6 +24,7 @@ Changes:
 
 import ShapeClickEL from './ShapeClickEL.js';
 import theUserData from './UserData.js';
+import theWaitAnimation from './WaitAnimation.js';
 
 /* ------------------------------------------------------------------------------------------------------------------------- */
 /**
@@ -75,6 +76,7 @@ class RouteClickEL {
 				mainDivElement.appendChild ( divElement );
 			}
 		);
+		theWaitAnimation.hide ( );
 	}
 
 	/**
@@ -83,13 +85,16 @@ class RouteClickEL {
 	 */
 
 	handleEvent ( clickEvent ) {
+		theWaitAnimation.show ( );
 		document.querySelectorAll ( '.gtfsweb-buttonRoute' ).forEach (
 			element => {
 				element.classList.remove ( 'gtfsweb-selected' );
+				element.classList.add ( 'gtfsweb-hidden' );
 			}
 		);
-		theUserData.routeFullName = clickEvent.target.innerText;
 		clickEvent.target.classList.add ( 'gtfsweb-selected' );
+		clickEvent.target.classList.remove ( 'gtfsweb-hidden' );
+		theUserData.routeFullName = clickEvent.target.innerText;
 		let askDate = document.getElementById ( 'gtfsweb-DateInput' ).value;
 		let startDate = '' === askDate ? '2099-12-31' : askDate;
 		let endDate = '' === askDate ? '2000-01-01' : askDate;

@@ -48,11 +48,11 @@ class SearchInputEL {
 		document.getElementById ( 'gtfsweb-routes' ).childNodes.forEach (
 			childNode => {
 				if ( childNode.innerText.includes ( inputEvent.target.value ) ) {
-					childNode.classList.remove ( 'gtsfweb-hidden' );
+					childNode.classList.remove ( 'gtfsweb-hidden' );
 					routeTeller ++;
 				}
 				else {
-					childNode.classList.add ( 'gtsfweb-hidden' );
+					childNode.classList.add ( 'gtfsweb-hidden' );
 				}
 			}
 		);

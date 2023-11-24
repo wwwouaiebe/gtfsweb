@@ -24,6 +24,7 @@ Changes:
 
 import GpxFactory from './GpxFactory.js';
 import theUserData from './UserData.js';
+import theWaitAnimation from './WaitAnimation.js';
 
 /* ------------------------------------------------------------------------------------------------------------------------- */
 /**
@@ -56,6 +57,7 @@ class ShapeClickEL {
 	 */
 
 	#parseResponse ( result ) {
+		theWaitAnimation.hide ( );
 		new GpxFactory ( this.#shapePk, result );
 	}
 
@@ -64,6 +66,7 @@ class ShapeClickEL {
 	 */
 
 	handleEvent ( ) {
+		theWaitAnimation.show ( );
 		document.querySelectorAll ( '.gtfsweb-buttonShape' ).forEach (
 			element => {
 				element.classList.remove ( 'gtfsweb-selected' );

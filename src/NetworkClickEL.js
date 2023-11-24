@@ -24,6 +24,7 @@ Changes:
 
 import AgencyClickEL from './AgencyClickEL.js';
 import theUserData from './UserData.js';
+import theWaitAnimation from './WaitAnimation.js';
 
 /* ------------------------------------------------------------------------------------------------------------------------- */
 /**
@@ -72,6 +73,7 @@ class NetworkClickEL {
 				mainDivElement.appendChild ( divElement );
 			}
 		);
+		theWaitAnimation.hide ( );
 		if ( 1 === result.length ) {
 			divElement.click ( );
 		}
@@ -82,6 +84,7 @@ class NetworkClickEL {
 	 * @param {Event} clickEvent the event to handle	 */
 
 	handleEvent ( clickEvent ) {
+		theWaitAnimation.show ( );
 		document.querySelectorAll ( '.gtfsweb-buttonNetwork' ).forEach (
 			element => {
 				element.classList.remove ( 'gtfsweb-selected' );
