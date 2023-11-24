@@ -129,46 +129,23 @@ class GpxFactory {
 	*/
 
 	#addWayPoints ( ) {
-		this.#gpxString +=
-			GpxFactory.#TAB1 + '<wpt lat="' +
-			this.#result[ 0 ].lat +
-			'" lon="' +
-			this.#result[ 0 ].lon + '">' +
-			GpxFactory.#TAB2 + this.#timeStamp +
-			GpxFactory.#TAB2 + '<name>' + this.#replaceEntities ( 'start' ) + '</name>' +
-			GpxFactory.#TAB1 + '</wpt>';
-		this.#gpxString +=
-			GpxFactory.#TAB1 + '<wpt lat="' +
-			this.#result[ this.#result.length - 1 ].lat +
-			'" lon="' +
-			this.#result[ this.#result.length - 1 ].lon + '">' +
-			GpxFactory.#TAB2 + this.#timeStamp +
-			GpxFactory.#TAB2 + '<name>' + this.#replaceEntities ( 'end' ) + '</name>' +
-			GpxFactory.#TAB1 + '</wpt>';
+		this.#result.stops.forEach (
+			currentStop => {
+				this.#gpxString +=
+					GpxFactory.#TAB1 + '<wpt lat="' +
+					currentStop.lat +
+					'" lon="' +
+					currentStop.lon + '">' +
+					GpxFactory.#TAB2 + this.#timeStamp +
+					GpxFactory.#TAB2 + '<name>' +
+					currentStop.sequence + ' - ' +
+					this.#replaceEntities ( currentStop.name ) +
+					' ( ' + this.#replaceEntities ( currentStop.id ) + ' ) ' +
+					'</name>' +
+					GpxFactory.#TAB1 + '</wpt>';
+			}
+		);
 	}
-
-	/**
-	Add the route to the gpx file
-	*/
-
-	/*
-	#addRoute ( ) {
-		this.#gpxString += GpxFactory.#TAB1 + '<rte>';
-		this.#gpxString += GpxFactory.#TAB2 + '<name>' + this.#replaceEntities ( this.#route.computedName ) + '</name>';
-		const maneuverIterator = this.#route.itinerary.maneuvers.iterator;
-		while ( ! maneuverIterator.done ) {
-			const wayPoint = this.#route.itinerary.itineraryPoints.getAt (
-				maneuverIterator.value.itineraryPointObjId
-			);
-			this.#gpxString +=
-				GpxFactory.#TAB2 + '<rtept lat="' + wayPoint.lat + '" lon="' + wayPoint.lng + '">' +
-				GpxFactory.#TAB3 + this.#timeStamp +
-				GpxFactory.#TAB3 + '<desc>' + this.#replaceEntities ( maneuverIterator.value.instruction ) + '</desc>' +
-				GpxFactory.#TAB2 + '</rtept>';
-		}
-		this.#gpxString += GpxFactory.#TAB1 + '</rte>';
-	}
-    */
 
 	/**
 	Add the track to the gpx file
@@ -182,7 +159,7 @@ class GpxFactory {
 			'</name>';
 		this.#gpxString += GpxFactory.#TAB2 + '<trkseg>';
 
-		this.#result.forEach (
+		this.#result.shapePoints.forEach (
 			shapePoint => {
 				this.#gpxString +=
                     GpxFactory.#TAB3 +
@@ -237,7 +214,10 @@ class GpxFactory {
 	*/
 
 	#saveGpxToFile ( ) {
-		let fileName = theUserData.routeFullName + ' - ' + this.#shapeId + '.gpx';
+		let fileName = theUserData.routeFullName + ' - from ' +
+			this.#result.stops [ 0 ].name + ' to ' +
+			this.#result.stops [ this.#result.stops.length - 1 ].name +
+			' - ' + this.#shapeId + '.gpx';
 		this.#saveFile ( fileName, this.#gpxString, 'application/xml' );
 	}
 
