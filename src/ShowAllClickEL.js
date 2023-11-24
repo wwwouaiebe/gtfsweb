@@ -22,19 +22,36 @@ Changes:
 */
 /* ------------------------------------------------------------------------------------------------------------------------- */
 
-import NetworkClickEL from './NetworkClickEL.js';
-import SearchInputEL from './SearchInputEL.js';
-import ShowAllClickEL from './ShowAllClickEL.js';
+/* ------------------------------------------------------------------------------------------------------------------------- */
+/**
+ * Coming soon...
+ */
+/* ------------------------------------------------------------------------------------------------------------------------- */
 
-document.getElementById ( 'gtfsweb-buttonStib' ).addEventListener ( 'click', new NetworkClickEL ( 'gtfs_stib' ) );
-document.getElementById ( 'gtfsweb-buttonTec' ).addEventListener ( 'click', new NetworkClickEL ( 'gtfs_tec' ) );
-document.getElementById ( 'gtfsweb-buttonDelijn' ).addEventListener ( 'click', new NetworkClickEL ( 'gtfs_delijn' ) );
-document.getElementById ( 'gtfsweb-DateInput' ).value = new Date ( )
-	.toISOString ( )
-	// eslint-disable-next-line no-magic-numbers
-	.slice ( 0, 10 );
+class ShowAllClickEL {
 
-document.getElementById ( 'gtfsweb-search-input' ).addEventListener ( 'input', new SearchInputEL ( ) );
-document.getElementById ( 'gtfsweb-showAllButton' ).addEventListener ( 'click', new ShowAllClickEL ( ) );
+	/**
+	 * The constructor
+	 */
+
+	constructor ( ) {
+		Object.freeze ( this );
+	}
+
+	/**
+	 * Coming soon...
+	 */
+
+	handleEvent ( ) {
+		document.querySelectorAll ( '.gtfsweb-buttonRoute' ).forEach (
+			element => {
+				element.classList.remove ( 'gtfsweb-hidden' );
+			}
+		);
+		document.getElementById ( 'gtfsweb-search-input' ).value = '';
+	}
+}
+
+export default ShowAllClickEL;
 
 /* --- End of file --------------------------------------------------------------------------------------------------------- */

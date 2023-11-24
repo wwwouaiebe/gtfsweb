@@ -34,11 +34,10 @@ Changes:
         <h1>Download gpx files created from GTFS feeds</h1>
         <!--- Date --->
         <div class = gtfsweb-help>
-            <p>Select the date of validity for the gpx file.</p>
-            <p>If you will have all the gpx files, clear the date.</p>
+            <p>Select the date of validity for the gpx file. If you will have all the gpx files, clear the date.</p>
             <p>The gtfs feed for De lijn don't have a calendar tables, so it's impossible to limit the gpx files with a date</p>
         </div>
-        <div>
+        <div id='gtfsweb-calendar'>
             <input type='date' class='gtfsweb-input' id='gtfsweb-DateInput'/>
         </div>
        <!--- Networks --->
@@ -64,6 +63,7 @@ Changes:
             <label for='gtfsweb-search-input'>Search the routes:</label>
             <input type='search' id='gtfsweb-search-input' />
             <span id='gtfsweb-routeTeller'>0</span> routes found.
+            <span id='gtfsweb-showAllButton'>Show all GTFS routes</span>
         </div>
         <div class = gtfsweb-help>
             <p>Select a route:</p>

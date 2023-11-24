@@ -1,7 +1,21 @@
 body {
-	width:40em;
-	margin-left: calc(50% - 20em);
+	width:50em;
+	margin-left: auto;
+	margin-right: auto;
+	font: 3.5mm "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
+
+#gtfsweb-calendar,
+#gtfsweb-networks,
+#gtfsweb-agencies,
+#gtfsweb-routes,
+#gtfsweb-trip {
+	border-style: solid ;
+	border-width: 0.1em;
+	text-align: center;
+	padding: 1em;
+}
+
 
 .gtfsweb-input {
     border-style: solid;
@@ -13,13 +27,12 @@ body {
 }
 
 .gtfsweb-button {
-    /* background-color: red; */
-    border-style: solid;
+     border-style: solid;
     border-width: 0.1em;
     padding: 0.1em;
-    margin-left: 2em;
     margin-bottom: 0.5em;
-    width: 40em;
+
+    /* width: 40em; */
     text-align: center;
 }
 
@@ -34,11 +47,24 @@ body {
     color:white;
 }
 
+#gtfsweb-showAllButton{
+	background-color: lightgreen;
+	border-style: solid;
+	border-width: 0.1em;
+	padding: 0.3em;
+}
+
+#gtfsweb-showAllButton:hover {
+    cursor: pointer;
+    background-color: green;
+	color: white;
+}
+
 #gtfsweb-waitUI {
 	position: fixed;
 	top: 10em;
-	left: calc(50% - 25em);
-	width: 50em;
+	left: calc(50% - 30em);
+	width: 60em;
 	color: black;
 	background-color: white;
 	z-index: 1400;

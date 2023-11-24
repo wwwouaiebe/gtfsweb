@@ -142,7 +142,10 @@ class UserData {
 
 	get routeFullName ( ) { return this.#routeFullName; }
 
-	set routeFullName ( routeFullName ) { this.#routeFullName = routeFullName; }
+	set routeFullName ( routeFullName ) {
+		this.#routeFullName = routeFullName;
+		this.#cleanTrip ( );
+	}
 
 	/**
 	 * The constructor
