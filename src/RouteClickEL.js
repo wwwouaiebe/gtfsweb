@@ -68,7 +68,7 @@ class RouteClickEL {
 					' to ' +
 					trip.maxEndDate +
 					' - ' +
-					trip.shapeId;
+					trip.shapePk;
 				divElement.classList.add ( 'gtfsweb-button' );
 				divElement.classList.add ( 'gtfsweb-buttonShape' );
 				divElement.id = 'gtfsweb-button-shape' + trip.shapePk;

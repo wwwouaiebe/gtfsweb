@@ -26,6 +26,7 @@ import NetworkClickEL from './NetworkClickEL.js';
 import SearchInputEL from './SearchInputEL.js';
 import ShowAllClickEL from './ShowAllClickEL.js';
 
+document.getElementById ( 'gtfsweb-buttonNew' ).addEventListener ( 'click', new NetworkClickEL ( 'gtfs_new' ) );
 document.getElementById ( 'gtfsweb-buttonStib' ).addEventListener ( 'click', new NetworkClickEL ( 'gtfs_stib' ) );
 document.getElementById ( 'gtfsweb-buttonTec' ).addEventListener ( 'click', new NetworkClickEL ( 'gtfs_tec' ) );
 document.getElementById ( 'gtfsweb-buttonDelijn' ).addEventListener ( 'click', new NetworkClickEL ( 'gtfs_delijn' ) );
